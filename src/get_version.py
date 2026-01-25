@@ -3,7 +3,7 @@ Parses Anki's version. Uncommment and run this directly to evaluate test cases.
 """
 
 import re
-import pkgutil
+import importlib
 
 import anki
 
@@ -61,9 +61,9 @@ def get_anki_version():
 """ Obtain PyQt Version """
 
 def get_pyqt_version():
-    if pkgutil.find_loader('PyQt4'):
+    if importlib.util.find_spec('PyQt4') is not None:
         return PYQT_VER_4
-    elif pkgutil.find_loader('PyQt5'):
+    elif importlib.util.find_spec('PyQt5') is not None:
         return PYQT_VER_5
     else:
         return PYQT_VER_LATEST
